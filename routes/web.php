@@ -34,4 +34,8 @@ Route::get('/agua', function () {
     return view('agua');
 })->middleware(['auth'])->name('agua');
 
+Route::get('/arena', function () {
+    return view('arena');
+})->middleware(['auth'])->name('arena');
+
 require __DIR__.'/auth.php';

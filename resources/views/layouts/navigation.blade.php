@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
                         {{ __('Agua') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
+                        {{ __('Arena') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -83,6 +86,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
                 {{ __('Agua') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
+                {{ __('Arena') }}
             </x-responsive-nav-link>
         </div>
 
