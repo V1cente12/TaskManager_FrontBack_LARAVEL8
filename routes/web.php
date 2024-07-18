@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    //return redirect()->route('login');
+    //return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/refresco', function () {
+    return view('refresco');
+})->middleware(['auth'])->name('refresco');
 
 require __DIR__.'/auth.php';
