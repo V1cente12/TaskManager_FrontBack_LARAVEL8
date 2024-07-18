@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">     
                     <!-- Botón con estilo -->
                     <button class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        Tarea realizada
+                        Marcar como Tarea realizada
                     </button>
                     
                     <!-- Tabla con estilos -->
@@ -31,6 +31,9 @@
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
                                         Validada por
                                     </th>
+                                    <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
+                                        Validar
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,6 +50,11 @@
                                     </td>
                                     <td class="py-2 px-4 border-b border-gray-200">
                                         María López
+                                    </td>
+                                    <td class="py-2 px-4 border-b border-gray-200">
+                                        <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                            Validar
+                                        </button>
                                     </td>
                                 </tr>
                                 <!-- Agrega más filas según sea necesario -->
