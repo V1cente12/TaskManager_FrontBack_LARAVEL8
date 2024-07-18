@@ -26,4 +26,8 @@ Route::get('/refresco', function () {
     return view('refresco');
 })->middleware(['auth'])->name('refresco');
 
+Route::get('/basura', function () {
+    return view('basura');
+})->middleware(['auth'])->name('basura');
+
 require __DIR__.'/auth.php';

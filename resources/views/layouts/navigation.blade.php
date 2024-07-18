@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('basura')" :active="request()->routeIs('basura')">
                         {{ __('Basura') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
+                        {{ __('Agua') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -77,6 +80,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('basura')" :active="request()->routeIs('basura')">
                 {{ __('Basura') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
+                {{ __('Agua') }}
             </x-responsive-nav-link>
         </div>
 
