@@ -10,9 +10,13 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">     
                     <!-- Botón con estilo -->
-                    <button class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                        Marcar como Tarea realizada
-                    </button>
+                    <form method="POST" action="{{ route('mark-task') }}">
+                        @csrf
+                        <input type="hidden" name="task_id" value="1"> <!-- Cambiar el valor según sea necesario -->
+                        <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                            Marcar como Tarea realizada
+                        </button>
+                    </form>
                     
                     <!-- Tabla con estilos -->
                     <div class="mt-8 overflow-x-auto">
