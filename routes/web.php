@@ -30,4 +30,8 @@ Route::get('/basura', function () {
     return view('basura');
 })->middleware(['auth'])->name('basura');
 
+Route::get('/agua', function () {
+    return view('agua');
+})->middleware(['auth'])->name('agua');
+
 require __DIR__.'/auth.php';
