@@ -38,4 +38,8 @@ Route::get('/arena', function () {
     return view('arena');
 })->middleware(['auth'])->name('arena');
 
+Route::get('/patio', function () {
+    return view('patio');
+})->middleware(['auth'])->name('patio');
+
 require __DIR__.'/auth.php';

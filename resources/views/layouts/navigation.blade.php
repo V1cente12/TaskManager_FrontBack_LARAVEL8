@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Menú principal') }}
                     </x-nav-link>
                     <x-nav-link :href="route('refresco')" :active="request()->routeIs('refresco')">
                         {{ __('Refresco') }}
@@ -26,6 +26,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
                         {{ __('Arena') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('patio')" :active="request()->routeIs('patio')">
+                        {{ __('Patio') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -76,7 +79,7 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Menú principal') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('refresco')" :active="request()->routeIs('refresco')">
                 {{ __('Refresco') }}
@@ -89,6 +92,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
                 {{ __('Arena') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('patio')" :active="request()->routeIs('patio')">
+                {{ __('Patio') }}
             </x-responsive-nav-link>
         </div>
 
