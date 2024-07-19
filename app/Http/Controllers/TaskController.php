@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class TaskController extends Controller
 {
     public function markTask(Request $request){
+       
         $request->validate([
             'task_id' => 'required|exists:tasks,id',
         ]);
