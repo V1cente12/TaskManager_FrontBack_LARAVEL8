@@ -28,31 +28,8 @@ Route::post('/mark-task',[TaskController::class, 'markTask'])
     ->name('mark-task');
 
     // routes/web.php
-Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
-
-
-Route::get('/refresco',[TaskController::class, 'showTask'])
+Route::get('/task/{id}', [TaskController::class, 'show'])
     ->middleware('auth')
-    ->name('refresco');
-
-Route::get('/refresco', function () {
-    return view('refresco');
-})->middleware(['auth'])->name('refresco');
-
-Route::get('/basura', function () {
-    return view('basura');
-})->middleware(['auth'])->name('basura');
-
-Route::get('/agua', function () {
-    return view('agua');
-})->middleware(['auth'])->name('agua');
-
-Route::get('/arena', function () {
-    return view('arena');
-})->middleware(['auth'])->name('arena');
-
-Route::get('/patio', function () {
-    return view('patio');
-})->middleware(['auth'])->name('patio');
+    ->name('task.show');
 
 require __DIR__.'/auth.php';
