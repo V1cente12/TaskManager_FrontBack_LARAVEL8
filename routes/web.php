@@ -23,7 +23,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/mark-task',[TaskController::class, 'markTask'])->middleware('auth')->name('mark-task');
+Route::post('/mark-task',[TaskController::class, 'markTask'])
+    ->middleware('auth')
+    ->name('mark-task');
+
+    // routes/web.php
+Route::get('/task/{id}', [TaskController::class, 'show'])->name('task.show');
+
+
+Route::get('/refresco',[TaskController::class, 'showTask'])
+    ->middleware('auth')
+    ->name('refresco');
 
 Route::get('/refresco', function () {
     return view('refresco');

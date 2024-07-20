@@ -24,4 +24,11 @@ class TaskController extends Controller
 
         return redirect()->back()->with('status', 'Tarea marcada como realizada.');
     }
+
+    public function show($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('tasks.show', compact('task'));
+    }
+    
 }

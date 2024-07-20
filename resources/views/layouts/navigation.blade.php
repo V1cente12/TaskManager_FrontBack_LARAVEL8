@@ -1,3 +1,6 @@
+@php
+$tasks = session('tasks', []);
+@endphp
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,22 +18,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Menú principal') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('refresco')" :active="request()->routeIs('refresco')">
-                        {{ __('Refresco') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('basura')" :active="request()->routeIs('basura')">
-                        {{ __('Basura') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
-                        {{ __('Agua') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
-                        {{ __('Arena') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('patio')" :active="request()->routeIs('patio')">
-                        {{ __('Patio') }}
-                    </x-nav-link>
+                    @foreach ($tasks as $task)
+                        <x-nav-link :href="route('task.show', ['id' => $task->id])":active="request()->is('task/'.$task->id)">
+                            {{ $task->name }}
+                        </x-nav-link>
+                    @endforeach
                 </div>
+                
             </div>
 
             <!-- Settings Dropdown -->
@@ -75,28 +69,21 @@
         </div>
     </div>
 
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Menú principal') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('refresco')" :active="request()->routeIs('refresco')">
-                {{ __('Refresco') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('basura')" :active="request()->routeIs('basura')">
-                {{ __('Basura') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('agua')" :active="request()->routeIs('agua')">
-                {{ __('Agua') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('arena')" :active="request()->routeIs('arena')">
-                {{ __('Arena') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('patio')" :active="request()->routeIs('patio')">
-                {{ __('Patio') }}
-            </x-responsive-nav-link>
+        <!-- Responsive Navigation Menu -->
+        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Menú principal') }}
+                </x-responsive-nav-link>
+                @foreach ($tasks as $task)
+                    <x-responsive-nav-link :href="route('task.show', ['id' => $task->id])"
+                                        :active="request()->is('task/'.$task->id)">
+                        {{ $task->name }}
+                    </x-responsive-nav-link>
+                @endforeach
+            </div>
         </div>
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
