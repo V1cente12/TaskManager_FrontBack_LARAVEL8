@@ -19,7 +19,8 @@ $tasks = session('tasks', []);
                         {{ __('Menú principal') }}
                     </x-nav-link>
                     @foreach ($tasks as $task)
-                        <x-nav-link :href="route('task.show', ['id' => $task->id])":active="request()->is('task/'.$task->id)">
+                        <x-nav-link :href="route('task.show', ['id' => $task->id])"
+                                    :active="request()->is('task/'.$task->id)">
                             {{ $task->name }}
                         </x-nav-link>
                     @endforeach
@@ -69,21 +70,19 @@ $tasks = session('tasks', []);
         </div>
     </div>
 
-        <!-- Responsive Navigation Menu -->
-        <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-            <div class="pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                    {{ __('Menú principal') }}
+    <!-- Responsive Navigation Menu -->
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{ __('Menú principal') }}
+            </x-responsive-nav-link>
+            @foreach ($tasks as $task)
+                <x-responsive-nav-link :href="route('task.show', ['id' => $task->id])"
+                                    :active="request()->is('task/'.$task->id)">
+                    {{ $task->name }}
                 </x-responsive-nav-link>
-                @foreach ($tasks as $task)
-                    <x-responsive-nav-link :href="route('task.show', ['id' => $task->id])"
-                                        :active="request()->is('task/'.$task->id)">
-                        {{ $task->name }}
-                    </x-responsive-nav-link>
-                @endforeach
-            </div>
+            @endforeach
         </div>
-
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
