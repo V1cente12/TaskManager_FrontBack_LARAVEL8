@@ -7,9 +7,23 @@ use App\Models\Shifts;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\TaskService;
+use App\Services\ShiftService;
 
 class TaskController extends Controller
 {
+    protected $taskService;
+
+    public function __construct(TaskService $taskService)
+    {
+        $this->taskService = $taskService;
+    }
+
+    public function show($id)
+    {
+        $task = $this->taskService->find($id);
+        return view('tasks.show', compact('task'));
+    }
     public function markTask(Request $request){
        
         $request->validate([
@@ -24,11 +38,4 @@ class TaskController extends Controller
 
         return redirect()->back()->with('status', 'Tarea marcada como realizada.');
     }
-
-    public function show($id)
-    {
-        $task = Task::findOrFail($id);
-        return view('tasks.show', compact('task'));
-    }
-    
 }
