@@ -13,19 +13,24 @@ use App\Services\ShiftService;
 class TaskController extends Controller
 {
     protected $taskService;
+    protected $shiftsService;
 
-    public function __construct(TaskService $taskService)
+    public function __construct(TaskService $taskService, ShiftService $shiftService)
     {
         $this->taskService = $taskService;
+        $this->shiftsService = $shiftService;
     }
 
     public function show($id)
     {
-        $task = $this->taskService->find($id);
-        return view('tasks.show', compact('task'));
+        $task   = $this->taskService->find($id);   
+        $shifts = $this->shiftsService->findbytask($id);
+        $user   = Auth::user();
+        return view('tasks.show', compact('task','shifts', 'user'));
     }
-    public function markTask(Request $request){
-       
+
+    public function markTask(Request $request, $task_id, $user_id){
+       dd($task_id);
         $request->validate([
             'task_id' => 'required|exists:tasks,id',
         ]);

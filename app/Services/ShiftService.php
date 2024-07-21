@@ -6,9 +6,9 @@ use App\Models\Shifts;
 
 class ShiftService
 {
-    public function find($id)
+    public function findbytask($id)
     {
-        return Shifts::findOrFail($id);
+        return Shifts::where('task_id', $id)->with(['task', 'user'])->get();
     }
 
     public function all()

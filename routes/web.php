@@ -23,7 +23,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/mark-task',[TaskController::class, 'markTask'])
+Route::post('/mark-task/{task_id}/{user_id}', [TaskController::class, 'markTask'])
     ->middleware('auth')
     ->name('mark-task');
 

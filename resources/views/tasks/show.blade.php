@@ -10,13 +10,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">     
                     <!-- Botón con estilo -->
-                    <form method="POST" action="{{ route('mark-task') }}">
+                    <form method="POST" action="{{ route('mark-task', ['task_id' => $task->id, 'user_id' => $user->id]) }}">
                         @csrf
-                        <input type="hidden" name="task_id" value="1"> <!-- Cambiar el valor según sea necesario -->
+                        <!-- No es necesario usar campos ocultos si ya estás pasando los parámetros en la URL -->
                         <button type="submit" class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
                             Marcar como Tarea realizada
                         </button>
                     </form>
+                    
                     
                     <!-- Tabla con estilos -->
                     <div class="mt-8 overflow-x-auto">
@@ -43,23 +44,28 @@
                             <tbody>
                                 <!-- Aquí irán las filas de datos -->
                                 <tr>
-                                    <td class="py-2 px-4 border-b border-gray-200">
-                                        Juan Pérez
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-gray-200">
-                                        Comprar Refresco
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-gray-200">
-                                        2024-07-16
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-gray-200">
-                                        María López
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-gray-200">
-                                        <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
-                                            Validar
-                                        </button>
-                                    </td>
+                                    @foreach ($shifts as $shift)
+                                    <tr>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            {{ $shift->user->name }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            {{ $shift->task->name }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            {{ $shift->completed_at }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            {{ $shift->validated_by->name ?? 'N/A' }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                                Validar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                   
                                 </tr>
                                 <!-- Agrega más filas según sea necesario -->
                             </tbody>
