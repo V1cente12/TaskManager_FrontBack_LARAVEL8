@@ -15,6 +15,15 @@ class ShiftService
     {
         return Shifts::all();
     }
+    
+    public function createShift($user_id, $task_id)
+    {
+        return Shifts::create([
+            'user_id' => $user_id,
+            'task_id' => $task_id,
+            'completed_at' => now(),
+        ]);
+    }
 
     public function create(array $data)
     {

@@ -15,14 +15,12 @@ class TaskController extends Controller
     protected $taskService;
     protected $shiftsService;
 
-    public function __construct(TaskService $taskService, ShiftService $shiftService)
-    {
+    public function __construct(TaskService $taskService, ShiftService $shiftService){
         $this->taskService = $taskService;
         $this->shiftsService = $shiftService;
     }
 
-    public function show($id)
-    {
+    public function show($id){
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
         $user   = Auth::user();
@@ -30,16 +28,7 @@ class TaskController extends Controller
     }
 
     public function markTask(Request $request, $task_id, $user_id){
-       dd($task_id);
-        $request->validate([
-            'task_id' => 'required|exists:tasks,id',
-        ]);
-
-        $shift = new Shifts();
-        $shift->user_id = Auth::id();
-        $shift->task_id = $request->task_id;
-        $shift->completed_at = now();
-        $shift->save();
+        $this->shiftsService->createShift($user_id, $task_id);
 
         return redirect()->back()->with('status', 'Tarea marcada como realizada.');
     }
