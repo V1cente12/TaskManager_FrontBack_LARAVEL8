@@ -6,16 +6,18 @@ use App\Models\Shifts;
 
 class ShiftService
 {
+    //buscar registro por tarea
     public function findbytask($id)
     {
         return Shifts::where('task_id', $id)->with(['task', 'user'])->get();
     }
-
+    //busca todas los registros
     public function all()
     {
         return Shifts::all();
     }
     
+    //crear registro
     public function createShift($user_id, $task_id)
     {
         return Shifts::create([
