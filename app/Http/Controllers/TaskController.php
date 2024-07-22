@@ -19,7 +19,7 @@ class TaskController extends Controller
         $this->taskService = $taskService;
         $this->shiftsService = $shiftService;
     }
-
+    //mostrar tareas
     public function show($id){
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
