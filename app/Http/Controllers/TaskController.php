@@ -26,7 +26,7 @@ class TaskController extends Controller
         $user   = Auth::user();
         return view('tasks.show', compact('task','shifts', 'user'));
     }
-
+    //marcar tarea como hecha
     public function markTask(Request $request, $task_id, $user_id){
         $this->shiftsService->createShift($user_id, $task_id);
         return redirect()->back()->with('status', 'Tarea marcada como realizada.');
