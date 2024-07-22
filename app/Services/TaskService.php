@@ -6,16 +6,18 @@ use App\Models\Task;
 
 class TaskService
 {
+    //buscar tarea por id
     public function find($id)
     {
         return Task::findOrFail($id);
     }
-
+    //listar todas las tareas
     public function all()
     {
         return Task::all();
     }
-
+    
+    //crear tarea
     public function create(array $data)
     {
         return Task::create($data);
