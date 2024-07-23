@@ -19,6 +19,7 @@ class TaskController extends Controller
         $this->taskService = $taskService;
         $this->shiftsService = $shiftService;
     }
+    
     //mostrar tareas
     public function show($id){
         $task   = $this->taskService->find($id);   
@@ -26,9 +27,16 @@ class TaskController extends Controller
         $user   = Auth::user();
         return view('tasks.show', compact('task','shifts', 'user'));
     }
+    
     //marcar tarea como hecha
     public function markTask(Request $request, $task_id, $user_id){
         $this->shiftsService->createShift($user_id, $task_id);
         return redirect()->back()->with('status', 'Tarea marcada como realizada.');
+    }
+    
+    //validar tarea
+    public function validate(Request $request, $task_id, $user_id){
+        $this->shiftsService->validateTask($user_id, $task_id, $shifts_id);
+        return redirect()->back();
     }
 }
