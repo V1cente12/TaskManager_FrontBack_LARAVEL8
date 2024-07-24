@@ -29,7 +29,7 @@ $shifts = session('shifts');
                                         Validada por
                                     </th>
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
-                                        Validada el
+                                         Validada el
                                     </th>
                                 </tr>
                             </thead>
