@@ -9,7 +9,9 @@ class Task extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description'];
+    protected $fillable = [
+        'name',
+        'description'];
 
     public function shifts(){
         return $this->hasMany(Shifts::class);
