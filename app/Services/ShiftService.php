@@ -14,12 +14,14 @@ class ShiftService
             ->orderBy('completed_at', 'desc')
             ->get();
     }
+
     //busca todas los registros
     public function all()
     {
         return Shifts::all();
     }
 
+    //validar turno por id
     public function validateShiftbyId($user_id, $task_id, $shift_id){
         $task = Shifts::findOrFail($shift_id);
         $task->update([
