@@ -43,7 +43,7 @@ $shifts = session('shifts');
                                             {{ $shift->completed_at }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            {{ $shift->validated_by->name ?? 'N/A' }}
+                                            {{ $shift->validator->name ?? 'N/A' }}
                                         </td>
                                     </tr>
                                 @endforeach

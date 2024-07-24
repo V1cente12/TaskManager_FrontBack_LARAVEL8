@@ -37,6 +37,9 @@
                                         Validada por
                                     </th>
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
+                                        Validada el
+                                    </th>
+                                    <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
                                         Validar
                                     </th>
                                 </tr>
@@ -53,21 +56,39 @@
                                             {{ $shift->task->name }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            {{ $shift->completed_at }}
+                                            {{ date('H:i d-m-y', strtotime($shift->completed_at)) }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
                                             {{ $shift->validator->name ?? 'N/A' }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            <form method="POST" action="{{ route('validate-shift', ['task_id' => $task->id, 'user_id' => $user->id, 'shift_id' => $shift->id]) }}">
-                                                @csrf
-                                                @method('PUT')
-                                                <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                            {{ date('H:i d-m-y', strtotime($shift->validated_at)) }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200" x-data="{ showPopup: false }">
+                                            @if (!isset($shift->validator->name))
+                                                <form method="POST" action="{{ route('validate-shift', ['task_id' => $task->id, 'user_id' => $user->id, 'shift_id' => $shift->id]) }}">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                                        Validar
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <button @click="showPopup = true" class="px-4 py-2 bg-gray-500 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
                                                     Validar
                                                 </button>
-                                            </form>
-                                           
+                                                <!-- Popup -->
+                                                <div x-show="showPopup" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" x-transition>
+                                                    <div class="bg-white p-4 rounded-lg shadow-lg">
+                                                        <h2 class="text-lg font-semibold">Este registro ya fue validado</h2>
+                                                        <button @click="showPopup = false" class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                                                            Cerrar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </td>
+                                        
                                     </tr>
                                 @endforeach
                                 </tr>
