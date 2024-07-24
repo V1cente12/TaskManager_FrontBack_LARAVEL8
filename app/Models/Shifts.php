@@ -14,7 +14,8 @@ class Shifts extends Model
     'task_id', 
     'completed_at',
     'validated_by',
-    'validated_at'];
+    'validated_at'
+    ];
 
     public function user(){
         return $this->belongsTo(User::class);

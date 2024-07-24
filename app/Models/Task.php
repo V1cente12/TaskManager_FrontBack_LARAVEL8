@@ -11,7 +11,8 @@ class Task extends Model
 
     protected $fillable = [
         'name',
-        'description'];
+        'description'
+    ];
 
     public function shifts(){
         return $this->hasMany(Shifts::class);
