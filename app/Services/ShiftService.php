@@ -16,6 +16,15 @@ class ShiftService
     {
         return Shifts::all();
     }
+
+    public function validateShiftbyId($user_id, $task_id, $shift_id){
+        $task = Shifts::findOrFail($shift_id);
+        $task->update([
+            'validated_by' => $user_id,
+            'validated_at' => now(),
+        ]);
+        return $task;
+    }
     
     //crear registro
     public function createShift($user_id, $task_id)

@@ -59,15 +59,18 @@
                                             {{ $shift->validated_by->name ?? 'N/A' }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
-                                                Validar
-                                            </button>
+                                            <form method="POST" action="{{ route('validate-shift', ['task_id' => $task->id, 'user_id' => $user->id, 'shift_id' => $shift->id]) }}">
+                                                @csrf
+                                                @method('PUT')
+                                                <button class="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                                    Validar
+                                                </button>
+                                            </form>
+                                           
                                         </td>
                                     </tr>
                                 @endforeach
-                                   
                                 </tr>
-                                <!-- Agrega más filas según sea necesario -->
                             </tbody>
                         </table>
                     </div>

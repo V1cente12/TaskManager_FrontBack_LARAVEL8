@@ -27,6 +27,10 @@ Route::post('/mark-task/{task_id}/{user_id}', [TaskController::class, 'markTask'
     ->middleware('auth')
     ->name('mark-task');
 
+Route::put('/validate-shift/{task_id}/{user_id}/{shift_id}', [TaskController::class, 'validateShift'])
+    ->middleware('auth')
+    ->name('validate-shift');
+
     // routes/web.php
 Route::get('/task/{id}', [TaskController::class, 'show'])
     ->middleware('auth')
