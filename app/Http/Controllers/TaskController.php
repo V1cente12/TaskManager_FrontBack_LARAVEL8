@@ -37,6 +37,6 @@ class TaskController extends Controller
     //validar tarea
     public function validateShift(Request $request, $task_id, $user_id, $shift_id){
         $this->shiftsService->validateShiftbyId($user_id, $task_id, $shift_id);
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Tarea marcada como realizada.');
     }
 }
