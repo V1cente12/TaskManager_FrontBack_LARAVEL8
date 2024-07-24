@@ -9,7 +9,10 @@ class ShiftService
     //buscar registro por tarea
     public function findbytask($id)
     {
-        return Shifts::where('task_id', $id)->with(['task', 'user', 'validator'])->get();
+        return Shifts::where('task_id', $id)
+            ->with(['task', 'user', 'validator'])
+            ->orderBy('completed_at', 'desc')
+            ->get();
     }
     //busca todas los registros
     public function all()

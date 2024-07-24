@@ -28,6 +28,9 @@ $shifts = session('shifts');
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
                                         Validada por
                                     </th>
+                                    <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
+                                        Validada el
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,10 +43,13 @@ $shifts = session('shifts');
                                             {{ $shift->task->name }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            {{ $shift->completed_at }}
+                                            {{ date('H:i d-m-y', strtotime($shift->completed_at)) }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
                                             {{ $shift->validator->name ?? 'N/A' }}
+                                        </td>
+                                        <td class="py-2 px-4 border-b border-gray-200">
+                                            {{ date('H:i d-m-y', strtotime($shift->validated_at)) }}
                                         </td>
                                     </tr>
                                 @endforeach

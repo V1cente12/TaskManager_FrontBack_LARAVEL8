@@ -28,9 +28,6 @@
                                         Usuario
                                     </th>
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
-                                        Tarea
-                                    </th>
-                                    <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
                                         Completada el
                                     </th>
                                     <th class="py-2 px-4 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600">
@@ -53,17 +50,14 @@
                                             {{ $shift->user->name }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            {{ $shift->task->name }}
-                                        </td>
-                                        <td class="py-2 px-4 border-b border-gray-200">
                                             {{ date('H:i d-m-y', strtotime($shift->completed_at)) }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
                                             {{ $shift->validator->name ?? 'N/A' }}
                                         </td>
                                         <td class="py-2 px-4 border-b border-gray-200">
-                                            {{ date('H:i d-m-y', strtotime($shift->validated_at)) }}
-                                        </td>
+                                            {{ $shift->validated_at ? date('H:i d-m-y', strtotime($shift->validated_at)) : 'N/A' }}
+                                        </td>                                        
                                         <td class="py-2 px-4 border-b border-gray-200" x-data="{ showPopup: false }">
                                             @if (!isset($shift->validator->name))
                                                 <form method="POST" action="{{ route('validate-shift', ['task_id' => $task->id, 'user_id' => $user->id, 'shift_id' => $shift->id]) }}">
