@@ -34,15 +34,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        $user = Auth::user(); 
-        $tasks = Task::all(); 
-        $shifts = Shifts::orderBy('completed_at', 'desc')->get();
-
-        session([
-            'user_data' => $user,
-            'tasks' => $tasks,
-            'shifts' => $shifts,
-        ]);
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

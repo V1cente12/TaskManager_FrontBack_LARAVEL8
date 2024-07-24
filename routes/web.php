@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,10 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// routes/web.php
+Route::get('/dashboard', [Controller::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
 
 Route::post('/mark-task/{task_id}/{user_id}', [TaskController::class, 'markTask'])
     ->middleware('auth')
