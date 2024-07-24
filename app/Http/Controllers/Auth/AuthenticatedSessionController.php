@@ -7,6 +7,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Task;
+use App\Models\Shifts;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -32,6 +34,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        $user = Auth::user(); 
+        $tasks = Task::all(); 
+        $shifts = Shifts::orderBy('completed_at', 'desc')->get();
+
+        session([
+            'user_data' => $user,
+            'tasks' => $tasks,
+            'shifts' => $shifts,
+        ]);
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

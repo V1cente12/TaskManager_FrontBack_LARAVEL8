@@ -15,6 +15,9 @@
 
        <!-- Scripts -->
        <script src="{{ asset('js/app.js') }}" defer></script>
+
+        <!-- Alpine.js CDN -->
+       <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

@@ -23,26 +23,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::post('/mark-task',[TaskController::class, 'markTask'])->middleware('auth')->name('mark-task');
+Route::post('/mark-task/{task_id}/{user_id}', [TaskController::class, 'markTask'])
+    ->middleware('auth')
+    ->name('mark-task');
 
-Route::get('/refresco', function () {
-    return view('refresco');
-})->middleware(['auth'])->name('refresco');
+Route::put('/validate-shift/{task_id}/{user_id}/{shift_id}', [TaskController::class, 'validateShift'])
+    ->middleware('auth')
+    ->name('validate-shift');
 
-Route::get('/basura', function () {
-    return view('basura');
-})->middleware(['auth'])->name('basura');
-
-Route::get('/agua', function () {
-    return view('agua');
-})->middleware(['auth'])->name('agua');
-
-Route::get('/arena', function () {
-    return view('arena');
-})->middleware(['auth'])->name('arena');
-
-Route::get('/patio', function () {
-    return view('patio');
-})->middleware(['auth'])->name('patio');
+    // routes/web.php
+Route::get('/task/{id}', [TaskController::class, 'show'])
+    ->middleware('auth')
+    ->name('task.show');
 
 require __DIR__.'/auth.php';
