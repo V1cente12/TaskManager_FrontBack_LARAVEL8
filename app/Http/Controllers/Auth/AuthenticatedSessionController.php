@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user(); 
         $tasks = Task::all(); 
-        $shifts = Shifts::all();
+        $shifts = Shifts::orderBy('completed_at', 'desc')->get();
 
         session([
             'user_data' => $user,
