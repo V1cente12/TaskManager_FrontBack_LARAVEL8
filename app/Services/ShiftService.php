@@ -40,18 +40,7 @@ class ShiftService
         ]);
     }
 
-    public function create(array $data)
-    {
-        return Shifts::create($data);
-    }
-
-    public function update($id, array $data)
-    {
-        $task = Shifts::findOrFail($id);
-        $task->update($data);
-        return $task;
-    }
-
+    //eliminar turno
     public function delete($id)
     {
         $task = Shifts::findOrFail($id);
