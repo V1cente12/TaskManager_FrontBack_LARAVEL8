@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Services\TaskService;
 use App\Services\ShiftService;
-use App\Services\RolService;
+use App\Services\RoleService;
 
 class TaskController extends Controller
 {
@@ -17,7 +17,7 @@ class TaskController extends Controller
     protected $shiftsService;
     protected $roleService;
 
-    public function __construct(TaskService $taskService, ShiftService $shiftService, RolService $rolService){
+    public function __construct(TaskService $taskService, ShiftService $shiftService, RoleService $rolService){
         $this->taskService = $taskService;
         $this->shiftsService = $shiftService;
         $this->roleService = $rolService;
@@ -29,7 +29,7 @@ class TaskController extends Controller
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
         $role   = $this->roleService->findRolbyId($user->id);
-        return view('tasks.show', compact('task','shifts', 'user'));
+        return view('tasks.show', compact('task','shifts', 'user', 'role'));
     }
     
     //marcar tarea como hecha

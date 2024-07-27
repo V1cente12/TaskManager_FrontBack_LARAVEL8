@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Role;
 
-class RolService
+class RoleService
 {
     //buscar registro por tarea
     public function findRolbyId($user_id)
