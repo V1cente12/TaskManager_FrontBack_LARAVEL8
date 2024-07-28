@@ -28,8 +28,7 @@ class TaskController extends Controller
         $user   = Auth::user();
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
-        $role   = $this->roleService->findRolbyId($user->id);
-        return view('tasks.show', compact('task','shifts', 'user', 'role'));
+        return view('tasks.show', compact('task','shifts', 'user'));
     }
     
     //marcar tarea como hecha
