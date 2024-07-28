@@ -19,10 +19,10 @@
                     
                         <div x-show="showPopup" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" x-transition>
                             <div class="bg-white p-4 rounded-lg shadow-lg text-center">
-                                <h2 class="text-lg font-semibold mb-4">¿Estás segur@ que deseas marcar como tarea hecha?</h2>
+                                <h2 class="text-lg font-semibold mb-4">Estás segur@ que deseas marcar como tarea hecha?</h2>
                                 <div class="flex justify-center space-x-8">
                                     <button @click="$refs.markTaskForm.submit()" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                                        Sí
+                                        Zi
                                     </button>
                                     <button @click="showPopup = false" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
                                         No deseo
@@ -84,10 +84,10 @@
                                                         <h2 class="text-lg font-semibold">Estás segur@ que quieres validar esta tarea?</h2>
                                                         <div class="flex justify-center space-x-8">
                                                             <button @click="$refs.validateShiftForm.submit()" class="mt-4 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                                                                Sí
+                                                                Zi
                                                             </button>
                                                             <button @click="showPopup = false" class="mt-4 px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                                                                No
+                                                                No deseo
                                                             </button>
                                                         </div>
                                                     </div>
