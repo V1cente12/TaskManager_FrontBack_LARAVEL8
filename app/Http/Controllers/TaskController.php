@@ -10,22 +10,25 @@ use Illuminate\Support\Facades\Auth;
 use App\Services\TaskService;
 use App\Services\ShiftService;
 use App\Services\RoleService;
+use App\Services\UserService;
 
 class TaskController extends Controller
 {
     protected $taskService;
     protected $shiftsService;
     protected $roleService;
+    protected $UserService;
 
-    public function __construct(TaskService $taskService, ShiftService $shiftService, RoleService $rolService){
-        $this->taskService = $taskService;
-        $this->shiftsService = $shiftService;
-        $this->roleService = $rolService;
+    public function __construct(TaskService $taskService, ShiftService $shiftService, RoleService $rolService, UserService $userService){
+        $this->taskService      = $taskService;
+        $this->shiftsService    = $shiftService;
+        $this->roleService      = $rolService;
+        $this->UserService      = $userService;
     }
     
     //mostrar tareas
     public function show($id){
-        $user   = Auth::user();
+        $user = $this->UserService->find(Auth::id());
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
         return view('tasks.show', compact('task','shifts', 'user'));
