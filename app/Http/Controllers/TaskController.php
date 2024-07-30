@@ -25,24 +25,4 @@ class TaskController extends Controller
         $this->roleService      = $rolService;
         $this->UserService      = $userService;
     }
-    
-    //mostrar tareas
-    public function show($id){
-        $user = $this->UserService->find(Auth::id());
-        $task   = $this->taskService->find($id);   
-        $shifts = $this->shiftsService->findbytask($id);
-        return view('tasks.show', compact('task','shifts', 'user'));
-    }
-    
-    //marcar tarea como hecha
-    public function markTask(Request $request, $task_id, $user_id){
-        $this->shiftsService->createShift($user_id, $task_id);
-        return redirect()->back()->with('status', 'Tarea marcada como realizada.');
-    }
-    
-    //validar tarea
-    public function validateShift(Request $request, $task_id, $user_id, $shift_id){
-        $this->shiftsService->validateShiftbyId($user_id, $task_id, $shift_id);
-        return redirect()->back()->with('status', 'Tarea marcada como realizada.');
-    }
 }
