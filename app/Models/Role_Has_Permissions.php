@@ -14,13 +14,11 @@ class Role_Has_Permissions extends Model
         'user_id',
     ];
 
-    public function role()
-    {
+    public function role(){
         return $this->belongsTo(Role::class);
     }
 
-    public function user()
-    {
+    public function user(){
         return $this->belongsTo(User::class);
     }
 }
