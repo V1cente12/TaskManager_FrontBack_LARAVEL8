@@ -31,7 +31,8 @@ class Controller extends BaseController
         $this->roleService      = $rolService;
         $this->UserService      = $userService;
     }
-
+    
+    //mostrar dashboard
     public function index()
     {
         return view('dashboard');
