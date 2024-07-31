@@ -7,8 +7,7 @@ use App\Models\Shifts;
 class ShiftService
 {
     //buscar registro por tarea
-    public function findbytask($id)
-    {
+    public function findbytask($id){
         return Shifts::where('task_id', $id)
             ->with(['task', 'user', 'validator'])
             ->orderBy('completed_at', 'desc')
@@ -16,8 +15,7 @@ class ShiftService
     }
 
     //busca todas los registros
-    public function all()
-    {
+    public function all(){
         return Shifts::all();
     }
 
@@ -31,8 +29,7 @@ class ShiftService
     }
     
     //crear registro
-    public function createShift($user_id, $task_id)
-    {
+    public function createShift($user_id, $task_id){
         return Shifts::create([
             'user_id' => $user_id,
             'task_id' => $task_id,
@@ -41,8 +38,7 @@ class ShiftService
     }
 
     //eliminar turno
-    public function delete($id)
-    {
+    public function delete($id){
         $task = Shifts::findOrFail($id);
         $task->delete();
         return $task;
