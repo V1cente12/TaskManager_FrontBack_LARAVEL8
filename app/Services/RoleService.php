@@ -7,8 +7,7 @@ use App\Models\Role;
 class RoleService
 {
     //busca todas los registros
-    public function all()
-    {
+    public function all(){
         return Role::all();
     }
 }
