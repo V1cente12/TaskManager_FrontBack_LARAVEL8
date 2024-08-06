@@ -37,10 +37,5 @@ class ShiftService
         ]);
     }
 
-    //eliminar turno
-    public function delete($id){
-        $task = Shifts::findOrFail($id);
-        $task->delete();
-        return $task;
-    }
+ 
 }
