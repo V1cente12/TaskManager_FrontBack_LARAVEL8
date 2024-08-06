@@ -16,10 +16,7 @@ class TaskService
         return Task::all();
     }
     
-    //crear task
-    public function create(array $data){
-        return Task::create($data);
-    }
+
 
     //eliminar task
     public function delete($id){
