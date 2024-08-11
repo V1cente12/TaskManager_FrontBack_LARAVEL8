@@ -36,7 +36,5 @@ class ShiftService
             'task_id' => $task_id,
             'completed_at' => now(),
         ]);
-    }
-
- 
+    } 
 }
