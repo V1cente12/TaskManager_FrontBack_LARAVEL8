@@ -22,7 +22,7 @@ class LoadUserData
         if (Auth::check()) {
             $user = Auth::user();
             $tasks = Task::all();
-            $shifts = Shifts::orderBy('completed_at', 'desc')->get();
+            $shifts = Shifts::orderBy('completed_at', 'desc')->take(15)->get();
 
             view()->share('user', $user);
             view()->share('tasks', $tasks);

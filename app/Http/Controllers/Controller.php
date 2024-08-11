@@ -39,7 +39,7 @@ class Controller extends BaseController
     }
 
      //mostrar tareas
-     public function show($id){
+    public function show($id){
         $user = $this->UserService->find(Auth::id());
         $task   = $this->taskService->find($id);   
         $shifts = $this->shiftsService->findbytask($id);
