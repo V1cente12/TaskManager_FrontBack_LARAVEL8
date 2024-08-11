@@ -11,6 +11,7 @@ class ShiftService
         return Shifts::where('task_id', $id)
             ->with(['task', 'user', 'validator'])
             ->orderBy('completed_at', 'desc')
+            ->take(15)
             ->get();
     }
 
