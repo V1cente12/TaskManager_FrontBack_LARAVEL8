@@ -11,6 +11,7 @@ class ShiftService
         return Shifts::where('task_id', $id)
             ->with(['task', 'user', 'validator'])
             ->orderBy('completed_at', 'desc')
+            ->take(15)
             ->get();
     }
 
@@ -35,12 +36,5 @@ class ShiftService
             'task_id' => $task_id,
             'completed_at' => now(),
         ]);
-    }
-
-    //eliminar turno
-    public function delete($id){
-        $task = Shifts::findOrFail($id);
-        $task->delete();
-        return $task;
-    }
+    } 
 }

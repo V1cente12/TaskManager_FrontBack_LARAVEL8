@@ -10,4 +10,6 @@ class RoleHasPermissionsService
     public function all(){
         return Role_Has_Permissions::all();
     }
+    
+    //permisos por id permisos
 }
