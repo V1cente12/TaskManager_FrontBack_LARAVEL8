@@ -6,7 +6,7 @@ use App\Models\User;
 
 class UserService
 {
-    //busca todas los registros
+    //busca todas los registros de usuarios
     public function all(){
         return User::all();
     }
