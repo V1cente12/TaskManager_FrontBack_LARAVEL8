@@ -17,6 +17,4 @@ class UserService
         $user->role = $user->roles->first();
         return $user;
     }
-    
-    //buscar usuario por nombre
 }
