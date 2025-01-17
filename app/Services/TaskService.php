@@ -24,4 +24,11 @@ class TaskService
         $task->delete();
         return $task;
     }
+
+    public function create(array $data)
+    {
+        return Task::create($data);
+    }
+
+    
 }

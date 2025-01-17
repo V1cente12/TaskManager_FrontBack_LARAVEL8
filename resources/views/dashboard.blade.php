@@ -8,6 +8,36 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <div x-data="{ showPopup: false }" class="bg-white">
+                        <form x-ref="createTaskForm" method="POST" action="{{ route('create-task') }}" @submit.prevent="validateForm">
+                            @csrf
+                            <button @click.prevent="showPopup = true" type="button" class="mt-4 px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75">
+                                Crear Nueva Tarea
+                            </button>
+
+                            <div x-show="showPopup" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" x-transition>
+                                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                                    <h2 class="text-lg font-semibold mb-4">Formulario Para Crear Nueva Tarea</h2>
+                                    <div class="mb-4">
+                                        <label for="name" class="block text-gray-700">Nombre de la tarea:</label>
+                                        <input type="text" id="name" name="name" class="mt-2 px-4 py-2 border border-gray-300 rounded-md w-full" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="description" class="block text-gray-700">Descripción:</label>
+                                        <input id="description" name="description" rows="4" class="mt-2 px-4 py-2 border border-gray-300 rounded-md w-full" required></input>
+                                    </div>
+                                    <div class="flex justify-center space-x-8">
+                                        <button @click="validateForm" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                                            Guardar
+                                        </button>
+                                        <button @click="showPopup = false" type="button" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     <!-- Tabla con estilos -->
                     <div class="mt-8 overflow-x-auto">
                         <table class="min-w-full bg-white">
@@ -58,3 +88,17 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function validateForm() {
+        const name = document.getElementById('name').value;
+        const description = document.getElementById('description').value;
+
+        if (!name || !description) {
+            
+            return false;
+        }
+
+        this.$refs.createTaskForm.submit();
+    }
+</script>

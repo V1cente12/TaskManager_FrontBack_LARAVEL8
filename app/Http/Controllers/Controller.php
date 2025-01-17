@@ -38,6 +38,16 @@ class Controller extends BaseController
         return view('dashboard');
     }
 
+    public function create(Request $request)
+    {
+        $this->taskService->create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+        alert()->success('Éxito', 'Tarea creada exitosamente.');
+
+    return redirect()->back();
+    }
      //mostrar tareas
     public function show($id){
         $user = $this->UserService->find(Auth::id());
