@@ -21,9 +21,13 @@
 
     <!-- Alpine.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        @include('sweetalert::alert')
         @include('layouts.navigation')
 
         <!-- Page Heading -->
