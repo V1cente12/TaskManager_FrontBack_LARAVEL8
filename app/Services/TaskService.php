@@ -15,27 +15,22 @@ class TaskService
     public function all(){
         return Task::all();
     }
-    
-
 
     //eliminar task
     public function delete($id){
         $task = Task::findOrFail($id);
-        $task->delete();
+        $task->active = false;
+        $task->save();
         return $task;
     }
 
-    public function create(array $data)
-    {
+    public function create(array $data){
         return Task::create($data);
     }
 
-    public function update($id, array $data)
-    {
+    public function update($id, array $data){
         $task = Task::findOrFail($id);
         $task->update($data);
         return $task;
     }
-
-    
 }

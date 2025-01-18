@@ -59,33 +59,8 @@
                                     </div>
                                 </div>
                             </form>
-                            <form x-ref="deleteTaskForm" method="POST" action="{{ route('delete-task', ['task_id' => $task->id]) }}">
-                                @csrf
-                                @method('DELETE')
-                                <button @click.prevent="showDeletePopup = true" type="button" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                                    Eliminar Tarea
-                                </button>
-                                <div x-show="showDeletePopup" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" x-transition>
-                                    <div class="bg-white p-4 rounded-lg shadow-lg text-center">
-                                        <h2 class="text-lg font-semibold mb-4">Estás segur@ que deseas eliminar esta tarea?</h2>
-                                        <div class="flex justify-center space-x-8">
-                                            <button @click="$refs.deleteTaskForm.submit()" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
-                                                Sí
-                                            </button>
-                                            <button @click="showDeletePopup = false" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
-                                                No deseo
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                           
                         </div>
-
-                 
-
-        
-
-                        
                     </div>
                     <div class="mt-8 overflow-x-auto">
                         <table class="min-w-full bg-white">
@@ -176,6 +151,32 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <br>
+                    <div x-data="{ showPopup: false, showEditPopup: false, showDeletePopup: false, name: '{{ $task->name }}', description: '{{ $task->description }}' }" class="bg-white">
+                        <div class="flex space-x-4">
+                            <form x-ref="deleteTaskForm" method="POST" action="{{ route('delete-task', ['task_id' => $task->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button @click.prevent="showDeletePopup = true" type="button" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                                    Eliminar Tarea
+                                </button>
+                              
+                            </form>
+                            <div x-show="showDeletePopup" class="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75" x-transition>
+                                <div class="bg-white p-4 rounded-lg shadow-lg text-center">
+                                    <h2 class="text-lg font-semibold mb-4">Estás seguro que deseas eliminar esta tarea?</h2>
+                                    <div class="flex justify-center space-x-8">
+                                        <button @click.prevent="$refs.deleteTaskForm.submit()" class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+                                            Sí
+                                        </button>
+                                        <button @click="showDeletePopup = false" class="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75">
+                                            No deseo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

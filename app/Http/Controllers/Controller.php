@@ -34,9 +34,10 @@ class Controller extends BaseController
     
     //mostrar dashboard
     public function index(){
-        return view('dashboard');
+        $tasks = Task::where('active',true)->get();
+        return view('dashboard', compact('tasks'));
     }
-
+    
     public function createTask(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
@@ -45,7 +46,6 @@ class Controller extends BaseController
             'name.required' => 'El nombre de la tarea es obligatorio.',
             'description.required' => 'La descripción de la tarea es obligatoria.',
         ]);
-        
         $this->taskService->create([
             'name' => $request->name,
             'description' => $request->description,
@@ -63,7 +63,6 @@ class Controller extends BaseController
             'name.required' => 'El nombre de la tarea es obligatorio.',
             'description.required' => 'La descripción de la tarea es obligatoria.',
         ]);
-
         $this->taskService->update($task_id, [
             'name' => $request->name,
             'description' => $request->description,
@@ -72,7 +71,12 @@ class Controller extends BaseController
         return redirect()->back();
     }
 
-     //mostrar tareas
+    public function deleteTask($task_id){
+        $this->taskService->delete($task_id);
+        alert()->error('Éxito', 'Tarea eliminada exitosamente.');
+        return redirect()->route('dashboard');
+    }
+     
     public function show($id){
         $user = $this->UserService->find(Auth::id());
         $task   = $this->taskService->find($id);   
