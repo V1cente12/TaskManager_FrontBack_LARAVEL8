@@ -38,4 +38,17 @@ Route::get('/task/{id}', [Controller::class, 'show'])
     ->middleware('auth')
     ->name('task.show');
 
+Route::post('/create-task', [Controller::class, 'createTask'])
+    ->middleware('auth')
+    ->name('create-task');
+
+Route::post('/delete-task', [Controller::class, 'deleteTask'])
+    ->middleware('auth')
+    ->name('delete-task');
+
+Route::put('/update-task/{task_id}', [Controller::class, 'updateTask'])
+    ->middleware('auth')
+    ->name('update-task');
+
+
 require __DIR__.'/auth.php';

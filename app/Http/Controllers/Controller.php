@@ -33,13 +33,19 @@ class Controller extends BaseController
     }
     
     //mostrar dashboard
-    public function index()
-    {
+    public function index(){
         return view('dashboard');
     }
 
-    public function create(Request $request)
-    {
+    public function createTask(Request $request){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+        ], [
+            'name.required' => 'El nombre de la tarea es obligatorio.',
+            'description.required' => 'La descripción de la tarea es obligatoria.',
+        ]);
+        
         $this->taskService->create([
             'name' => $request->name,
             'description' => $request->description,
@@ -48,6 +54,24 @@ class Controller extends BaseController
 
     return redirect()->back();
     }
+
+    public function updateTask(Request $request, $task_id){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+        ], [
+            'name.required' => 'El nombre de la tarea es obligatorio.',
+            'description.required' => 'La descripción de la tarea es obligatoria.',
+        ]);
+
+        $this->taskService->update($task_id, [
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+        alert()->info('Éxito', 'Tarea actualizada exitosamente.');
+        return redirect()->back();
+    }
+
      //mostrar tareas
     public function show($id){
         $user = $this->UserService->find(Auth::id());
@@ -59,12 +83,14 @@ class Controller extends BaseController
     //marcar tarea como hecha
     public function markTask(Request $request, $task_id, $user_id){
         $this->shiftsService->createShift($user_id, $task_id);
-        return redirect()->back()->with('status', 'Tarea marcada como realizada.');
+        alert()->success('Éxito', 'La tarea se marcó como realizada correctamente.');
+        return redirect()->back();
     }
     
     //validar tarea
     public function validateShift(Request $request, $task_id, $user_id, $shift_id){
         $this->shiftsService->validateShiftbyId($user_id, $task_id, $shift_id);
-        return redirect()->back()->with('status', 'Tarea marcada como realizada.');
+        alert()->success('Éxito', 'Validaste la tarea.');
+        return redirect()->back();
     }
 }

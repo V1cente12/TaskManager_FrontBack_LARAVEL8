@@ -30,5 +30,12 @@ class TaskService
         return Task::create($data);
     }
 
+    public function update($id, array $data)
+    {
+        $task = Task::findOrFail($id);
+        $task->update($data);
+        return $task;
+    }
+
     
 }
