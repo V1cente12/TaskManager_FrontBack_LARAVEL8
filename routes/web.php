@@ -42,13 +42,18 @@ Route::post('/create-task', [Controller::class, 'createTask'])
     ->middleware('auth')
     ->name('create-task');
 
-Route::post('/delete-task', [Controller::class, 'deleteTask'])
+Route::delete('/delete-task/{task_id}', [Controller::class, 'deleteTask'])
     ->middleware('auth')
     ->name('delete-task');
 
 Route::put('/update-task/{task_id}', [Controller::class, 'updateTask'])
     ->middleware('auth')
     ->name('update-task');
+
+Route::get('/dashboard', [Controller::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
+
 
 
 require __DIR__.'/auth.php';
