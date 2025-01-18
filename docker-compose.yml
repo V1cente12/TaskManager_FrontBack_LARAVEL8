@@ -1,0 +1,67 @@
+# Definir la versión de Docker Compose que estamos utilizando
+version: '3.8'
+
+# Definir los servicios que necesitamos en nuestro contenedor (en este caso, la app Laravel y la base de datos)
+services:
+  
+  # Servicio para nuestra aplicación Laravel
+  app:
+    # Cómo construir la imagen para este servicio
+    build:
+      context: . # El contexto de construcción es el directorio actual, donde está tu proyecto
+      dockerfile: Dockerfile # Usamos el archivo Dockerfile para construir la imagen de la aplicación
+
+    # Nombre de la imagen que estamos creando (puede usarse para referenciarla después)
+    image: laravel-app:latest
+    # Nombre del contenedor
+    container_name: laravel_app
+
+    # Exposición de puertos: Exponemos el puerto 80 del contenedor al puerto 8080 de tu máquina local
+    ports:
+      - "8080:80" # El puerto 8080 en tu máquina local se conecta al puerto 80 dentro del contenedor
+
+    # Volúmenes: Sincroniza el directorio de tu proyecto con el contenedor
+    # Esto te permite editar los archivos localmente y ver los cambios reflejados dentro del contenedor
+    volumes:
+      - .:/var/www/html # El directorio actual de tu proyecto se mapea a /var/www/html dentro del contenedor
+
+    # Dependencias de este servicio: Este servicio depende de la base de datos (db)
+    depends_on:
+      - db # La base de datos debe estar lista antes de arrancar la app
+
+    # Variables de entorno necesarias para la aplicación Laravel
+    environment:
+      - APP_ENV=local # Define el entorno como 'local' (desarrollo)
+      - APP_DEBUG=true # Habilita el modo de depuración de Laravel
+      - APP_KEY=
+      - DB_HOST=db # El nombre del servicio de la base de datos (definido más abajo)
+      - DB_PORT=3306 # El puerto por defecto para MySQL
+      - DB_DATABASE=task_manager # El nombre de la base de datos que quieres usar
+      - DB_USERNAME=rootpassword # Usuario de MySQL
+      - DB_PASSWORD=rootpassword  # Contraseña de MySQL
+
+  # Servicio para la base de datos MySQL
+  db:
+    # Usamos la imagen oficial de MySQL 5.7
+    image: mysql:5.7
+    # Nombre del contenedor de la base de datos
+    container_name: laravel_db
+
+    # Exponemos el puerto de la base de datos para poder acceder desde fuera del contenedor si es necesario
+    ports:
+      - "3306:3306" # El puerto 3306 de MySQL se expone a tu máquina local en el mismo puerto
+
+    # Volúmenes: Esto asegura que los datos de la base de datos se conserven incluso si se detiene o reinicia el contenedor
+    volumes:
+      - db_data:/var/lib/mysql # Mapea el volumen db_data a la carpeta de MySQL dentro del contenedor
+
+    # Variables de entorno para configurar MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword   # Usuario de MySQL (el mismo que root en este caso)
+      MYSQL_DATABASE: task_manager # El nombre de la base de datos predeterminada que se creará
+      
+     
+
+# Volúmenes para persistir los datos de MySQL entre reinicios de contenedores
+volumes:
+  db_data:
