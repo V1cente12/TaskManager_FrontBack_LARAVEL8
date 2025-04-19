@@ -16,10 +16,13 @@ use App\Http\Controllers\Controller;
 */
 
 Route::get('/', function () {
-    //return view('welcome');
     return redirect()->route('login');
 });
 
+// Agregar esta ruta para manejar el modal de roles
+Route::post('/assign-role', [Controller::class, 'assignRole'])
+    ->middleware('auth')
+    ->name('assign.role');
 // routes/web.php
 Route::get('/dashboard', [Controller::class, 'index'])
     ->middleware('auth')
