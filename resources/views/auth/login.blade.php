@@ -57,4 +57,27 @@
             </div>
         </form>
     </x-auth-card>
+
+    @if(session('showRoleModal'))
+    <div class="modal fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full" id="roleModal">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">Selecciona tu Rol</h3>
+                <div class="mt-2 px-7 py-3">
+                    <form method="POST" action="{{ route('assign.role') }}">
+                        @csrf
+                        <select name="role_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                            @foreach(session('roles') as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+                            Guardar Rol
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </x-guest-layout>
