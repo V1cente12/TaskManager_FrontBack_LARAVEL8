@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Flia Calderon Vega</title>
+    <title>Calderon Vega</title>
     
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('uploads/family.ico') }}" type="image/x-icon">
@@ -15,27 +15,26 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Alpine.js CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
 
+    <!-- PWA -->
     <link rel="manifest" href="{{ asset('manifest.json') }}">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register("{{ asset('serviceworker.js') }}")
-                .then(() => console.log("Service Worker registrado"))
-                .catch(error => console.log("Error:", error));
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register("{{ asset('serviceworker.js') }}");
+            });
         }
     </script>
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         @include('sweetalert::alert')
         @include('layouts.navigation')
 
