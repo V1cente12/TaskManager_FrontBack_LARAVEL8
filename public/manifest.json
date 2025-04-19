@@ -4,7 +4,7 @@
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
-    "theme_color": "#4a90e2",
+    "theme_color": "#F3F4F6",
     "icons": [
         {
             "src": "/uploads/family.ico",
