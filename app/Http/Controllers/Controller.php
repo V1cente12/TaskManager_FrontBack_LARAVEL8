@@ -15,6 +15,7 @@ use App\Services\TaskService;
 use App\Services\ShiftService;
 use App\Services\RoleService;
 use App\Services\UserService;
+use App\Services\RoleHasPermissionsService;
 
 class Controller extends BaseController
 {
@@ -24,18 +25,31 @@ class Controller extends BaseController
     protected $shiftsService;
     protected $roleService;
     protected $UserService;
+    protected $roleHasPermissionsService;
 
-    public function __construct(TaskService $taskService, ShiftService $shiftService, RoleService $rolService, UserService $userService){
-        $this->taskService      = $taskService;
-        $this->shiftsService    = $shiftService;
-        $this->roleService      = $rolService;
-        $this->UserService      = $userService;
+    public function __construct(TaskService $taskService, ShiftService $shiftService, RoleService $rolService, UserService $userService , RoleHasPermissionsService $roleHasPermissionsService){
+        $this->taskService                  = $taskService;
+        $this->shiftsService                = $shiftService;
+        $this->roleService                  = $rolService;
+        $this->UserService                  = $userService;
+        $this->roleHasPermissionsService    = $roleHasPermissionsService;
     }
     
     //mostrar dashboard
     public function index(){
         $tasks = Task::where('active',true)->get();
         return view('dashboard', compact('tasks'));
+    }
+
+    public function assignRole(Request $request){
+        $request->validate([
+            'role_id' => 'required|exists:roles,id'
+        ]);
+
+        $this->roleHasPermissionsService->assignRole(Auth::id(), $request->role_id);
+        
+        alert()->success('Éxito', 'Rol asignado exitosamente.');
+        return redirect()->route('dashboard');
     }
     
     public function createTask(Request $request){
