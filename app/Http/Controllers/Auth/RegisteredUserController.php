@@ -10,7 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-
+use App\Models\Role_Has_Permissions;
+use App\Models\Role;
 class RegisteredUserController extends Controller
 {
     /**
@@ -48,6 +49,10 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        if (!Role_Has_Permissions::where('user_id', $user->id)->exists()) {
+            $roles = Role::all();
+            return view('auth.select-role', compact('roles'));
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }
