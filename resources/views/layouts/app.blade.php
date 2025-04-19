@@ -23,6 +23,15 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("{{ asset('serviceworker.js') }}")
+                .then(() => console.log("Service Worker registrado"))
+                .catch(error => console.log("Error:", error));
+        }
+    </script>
 </head>
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">

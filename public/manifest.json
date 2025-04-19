@@ -1,0 +1,20 @@
+{
+    "name": "Task Manager Familia",
+    "short_name": "TaskManager",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#4a90e2",
+    "icons": [
+        {
+            "src": "/uploads/family.ico",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/uploads/family.ico",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
