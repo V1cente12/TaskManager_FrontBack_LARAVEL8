@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Calderon Vega</title>
+    <title>Flia Calderon Vega</title>
     
     <!-- Favicon -->
     <link rel="icon" href="{{ asset('uploads/family.ico') }}" type="image/x-icon">
